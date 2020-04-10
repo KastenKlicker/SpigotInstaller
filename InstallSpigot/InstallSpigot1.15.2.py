@@ -5,12 +5,12 @@ import os.path
 from os import path
 
 version = "1.15.2"
+dir =  os.path.abspath(version)
 
 #Check if directory exist
 
 #Yes, it's exist
 if path.exists(version):
-    dir =  os.path.abspath("1.15.2")
     print("Error: Path exists already!")
     print("Do you want to remove " + dir + "?")
     print("Type <YES> for deleting the directory " + version + " and continue or type anything else to abort the Installation.")
@@ -19,8 +19,7 @@ if path.exists(version):
     
     #Deletes the directory and starts downloading
     if decision == "YES":
-        shutil.rmtree(dir)
-        os.system('cmd /k "mkdir "' + version + '" && cd "' + version + '" && curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && java -jar BuildTools.jar --rev "' + version + '" && echo Finished! && @ping -n 5 localhost> nul && exit"')
+        os.system('cmd /k "rmdir /s "' + version + '" && mkdir "' + version + '" && cd "' + version + '" && curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && java -jar BuildTools.jar --rev "' + version + '" && echo Finished! && @ping -n 5 localhost> nul && exit"')
         exit()
 
     #Abort Installation
