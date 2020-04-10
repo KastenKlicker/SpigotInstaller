@@ -76,6 +76,11 @@ Exec "$INSTDIR\1.15.2\FirstStart1.15.2.exe"
 AddSize 655000
 SectionEnd
 
+#Delete Files having no use anymore
+Section ""
+	Delete "$INSTDIR\InstallSpigot1.15.2.exe"
+SectionEnd
+
 Section "LICENSE"
   File "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\license.txt"
 SectionEnd
