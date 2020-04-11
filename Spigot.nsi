@@ -173,10 +173,10 @@ SectionGroupEnd
 
 
 
-#Version 1.12.4
-SectionGroup "Version 1.12.4"
+#Version 1.12.2
+SectionGroup "Version 1.12.2"
 Section /o ""
-	StrCpy $VERSION "1.12.4"
+	StrCpy $VERSION "1.12.2"
 SectionEnd
 #Installs and execute BuildTools
 Section /o ""
