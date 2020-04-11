@@ -13,9 +13,6 @@ InstallDir $DOCUMENTS\Spigot\YourServerName
 !define MUI_WELCOMEPAGE_TEXT "This is a GUI Installer for Spigot, it will help you to install Spigot. This not an offical offical program of spigotmc.org. "
 !insertmacro MUI_PAGE_WELCOME
 
-#Custom WarningPage
-Page Custom WarningPage WarningLeave
-
 #Other Pages
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
