@@ -53,7 +53,7 @@ FunctionEnd
 Section ""
 	MessageBox MB_OK "Don't close any window.(except this one)"
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot1.15.2.exe" "$INSTDIR\InstallSpigot1.15.2.exe"
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot1.15.2.exe" "$INSTDIR\InstallSpigot1.15.2.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot1.15.2.exe"
 	AddSize 8270
@@ -70,7 +70,7 @@ SectionEnd
 Section ""
 MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
 SetOutPath $INSTDIR\1.15.2
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart1.15.2.exe" "$INSTDIR\1.15.2\FirstStart1.15.2.exe"
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart1.15.2.exe" "$INSTDIR\1.15.2\FirstStart1.15.2.exe"
 	Pop $0
 Exec "$INSTDIR\1.15.2\FirstStart1.15.2.exe"
 AddSize 655000
