@@ -1,4 +1,7 @@
 #Version 1.15.2
+
+# @author KastenKlicker
+
 import shutil
 import os
 import os.path

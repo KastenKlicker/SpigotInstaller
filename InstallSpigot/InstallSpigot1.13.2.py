@@ -1,5 +1,7 @@
 # Version 1.13.2
 
+# @author KastenKlicker
+
 import os
 import os.path
 from os import path
