@@ -1,4 +1,4 @@
-# Version 1.8.9
+# Version 1.8.8
 
 # @author KastenKlicker
 
@@ -6,7 +6,7 @@ import os
 import os.path
 from os import path
 
-version = "1.8.9"
+version = "1.8.8"
 dir = os.path.abspath(version)
 
 # Check if directory exist
