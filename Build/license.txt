@@ -1,4 +1,3 @@
-THIS IS NOT FINAL!
 This program has no guarantee to work. Nobody is not liable for damage or other problems in this program. 
 This program contains third party software. One of them is the BuildTools.jar from www.spigotmc.org. Please look on their website for their Terms and Conditions.
 By Clicking on "I Agree" you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula) and accept the Trems and Conditions from the server software set by www.spigotmc.org.
