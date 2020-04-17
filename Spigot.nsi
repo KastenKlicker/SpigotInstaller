@@ -7,10 +7,15 @@ Name "Spigot"
 OutFile "SpigotInstaller.exe"
 InstallDir $DOCUMENTS\Spigot\YourServerName
 
+#Execute File on Finish
+Function FinishPDF
+  ExecShell "" "$INSTDIR\Installation.pdf"
+FunctionEnd
+
 #WelcomePage
 !define MUI_WELCOMEFINISHPAGE_BITMAP "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\Spigot.bmp"
 !define MUI_WELCOMEPAGE_TITLE "Install Spigot"
-!define MUI_WELCOMEPAGE_TEXT "This is a GUI Installer for Spigot, it will help you to install Spigot. This not an offical program of spigotmc.org. \n \nWarning: The Server can't be installed in an administrator direction! "
+!define MUI_WELCOMEPAGE_TEXT "This is a GUI Installer for Spigot, it will help you to install Spigot. This is not an offical program of spigotmc.org. \n \nWarning: The Server can't be installed in an administrator direction! "
 !insertmacro MUI_PAGE_WELCOME
 
 #Other Pages
@@ -22,7 +27,10 @@ InstallDir $DOCUMENTS\Spigot\YourServerName
 #FinishPage
 !define MUI_FINISHPAGE_TITLE "You have installed Spigot!"
 !define MUI_FINISHPAGE_TEXT "After the Server started right you can close the Installer and stop the server with the command stop. If you want to start the server again go in the server directory, choose your Version and execute the StartSpigot-<Version>.bat"
-!insertmacro MUI_PAGE_FINISH 
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Start InstallationPDF"
+!define MUI_FINISHPAGE_RUN_FUNCTION "FinishPDF" #Download at the end of the script
+!insertmacro MUI_PAGE_FINISH
 
 !insertmacro MUI_LANGUAGE "English"
 
@@ -352,11 +360,16 @@ SectionGroupEnd
 
 
 
+#Import license.txt with the absolute path
 Section ""
   File "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\license.txt"
 SectionEnd
 
+#Download Installation.pdf
 Section ""
-  File "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\license.txt"
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Installation.pdf" "$INSTDIR\Installation.pdf"
+	Pop $0
+	AddSize 162
 SectionEnd
 
