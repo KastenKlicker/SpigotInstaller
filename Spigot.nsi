@@ -731,7 +731,54 @@ SectionEnd
 #Downloads Spigot
 Section /o ""
 	SetOutPath "$INSTDIR\$VERSION"
-	inetc::get "https://cdn.getbukkit.org/spigot/spigot-1.11.2.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+###################################################################################CraftBukkit
+
+#Version 1.11.1
+SectionGroup "Version 1.11.1"
+Section /o ""
+	StrCpy $VERSION "1.11.1"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
 SectionEnd
 
 #Installs Startbatch
@@ -805,7 +852,54 @@ Section /o ""
 SectionEnd
 SectionGroupEnd
 
-###################################################################################CraftBukkit
+########################################################################################################################################################################
+
+#Version 1.10.2
+SectionGroup "Version 1.10.2"
+Section /o ""
+	StrCpy $VERSION "1.10.2"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
 
 #Version 1.10
 SectionGroup "Version 1.10"
@@ -887,6 +981,100 @@ SectionGroupEnd
 
 ########################################################################################################################################################################
 
+#Version 1.9.2
+SectionGroup "Version 1.9.2"
+Section /o ""
+	StrCpy $VERSION "1.9.2"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.9
+SectionGroup "Version 1.9"
+Section /o ""
+	StrCpy $VERSION "1.9"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
 #Version 1.8.8
 SectionGroup "Version 1.8.8"
 Section /o ""
@@ -917,6 +1105,288 @@ inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/Fi
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 655000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.8.7
+SectionGroup "Version 1.8.7"
+Section /o ""
+	StrCpy $VERSION "1.8.7"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.8.6
+SectionGroup "Version 1.8.6"
+Section /o ""
+	StrCpy $VERSION "1.8.6"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.8.5
+SectionGroup "Version 1.8.5"
+Section /o ""
+	StrCpy $VERSION "1.8.5"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.8.4
+SectionGroup "Version 1.8.4"
+Section /o ""
+	StrCpy $VERSION "1.8.4"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.8.3
+SectionGroup "Version 1.8.3"
+Section /o ""
+	StrCpy $VERSION "1.8.3"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#####################################################################################################################################################################
+
+#Version 1.8
+SectionGroup "Version 1.8"
+Section /o ""
+	StrCpy $VERSION "1.8"
+SectionEnd
+
+#Checks if path exist already
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Downloads Spigot.
+Section /o ""
+	SetOutPath "$INSTDIR\$VERSION"
+	inetc::get "https://cdn.getbukkit.org/spigot/spigot-$VERSION-R0.1-SNAPSHOT-latest.jar" "$INSTDIR\$VERSION\Spigot-$VERSION.jar"
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
 SectionEnd
 
 #Delete Files having no use anymore

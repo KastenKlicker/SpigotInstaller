@@ -30,6 +30,7 @@ if path.exists(version):
     else:
         os.system('cmd /k "taskkill /im SpigotInstaller.exe /f && exit"')
         exit()
+        
 # No, it doesn't exist, starts downloading
 else:
     os.system(
