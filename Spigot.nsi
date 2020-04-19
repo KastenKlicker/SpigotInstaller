@@ -1926,4 +1926,3 @@ Section ""
 	Pop $0
 	AddSize 162
 SectionEnd
-
