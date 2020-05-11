@@ -2,6 +2,7 @@
 
 # @author KastenKlicker
 
+import shutil
 import os
 import os.path
 from os import path
@@ -27,7 +28,7 @@ if path.exists(version):
 
     # Abort Installation
     else:
-        os.system('cmd /k "taskkill /im SpigotInstaller.exe /f && exit"')
+        shutil.rmtree(version)
         exit()
         
 # No, it doesn't exist, jumps back to Installer

@@ -13,7 +13,7 @@ Function FinishPDF
 FunctionEnd
 
 #WelcomePage
-!define MUI_WELCOMEFINISHPAGE_BITMAP "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\Spigot.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "The\path\you\downloaded\the\repository\Spigot.bmp"
 !define MUI_WELCOMEPAGE_TITLE "Install Spigot"
 !define MUI_WELCOMEPAGE_TEXT "This is a GUI Installer for Spigot, it will help you to install Spigot. This is not an offical program of spigotmc.org. \n \nWarning: The Server can't be installed in an administrator direction! "
 !insertmacro MUI_PAGE_WELCOME
@@ -21,7 +21,7 @@ FunctionEnd
 #Other Pages
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
-!insertmacro MUI_PAGE_LICENSE "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\license.txt"
+!insertmacro MUI_PAGE_LICENSE "The\path\you\downloaded\the\repository\license.txt"
 !insertmacro MUI_PAGE_INSTFILES
 
 #FinishPage
@@ -35,10 +35,23 @@ FunctionEnd
 !insertmacro MUI_LANGUAGE "English"
 
 #Absolute path of License.txt
-LicenseData "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\license.txt"
+LicenseData "The\path\you\downloaded\the\repository\license.txt"
 
 #Declare Variable
 Var VERSION
+
+#Custom Installation
+SectionGroup "Custom JAR File"
+Section /o ""
+MessageBox MB_OK "The installation will be finished after manually stoping the Server."
+SetOutPath $INSTDIR
+	inetc::get "https://kastenklicker.de/spigot/CustomFile.exe" "$INSTDIR\CustomFile.exe"
+	Pop $0
+	ExecWait "$INSTDIR\CustomFile.exe"
+SectionEnd
+SectionGroupEnd
+
+#######################################################################################################################################################
 
 #Version 1.15.2
 SectionGroup "Version 1.15.2"
@@ -49,7 +62,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -58,15 +71,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -97,7 +110,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -106,15 +119,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -145,7 +158,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -154,15 +167,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -193,7 +206,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -202,15 +215,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -241,7 +254,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -250,15 +263,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -289,7 +302,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -298,15 +311,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -337,7 +350,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -346,15 +359,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -385,7 +398,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -394,15 +407,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -433,7 +446,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -442,15 +455,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -481,7 +494,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -490,15 +503,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -529,7 +542,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -538,15 +551,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -577,7 +590,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -586,15 +599,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -625,7 +638,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -634,15 +647,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -673,7 +686,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -682,15 +695,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -722,7 +735,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -737,15 +750,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -769,7 +782,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -784,15 +797,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -815,7 +828,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -824,15 +837,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -864,7 +877,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -879,15 +892,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -910,7 +923,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -919,15 +932,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 655000
@@ -950,7 +963,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -959,15 +972,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 655000
@@ -991,7 +1004,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1006,15 +1019,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1038,7 +1051,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1053,15 +1066,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1084,7 +1097,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1093,15 +1106,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 655000
@@ -1125,7 +1138,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1140,15 +1153,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1172,7 +1185,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1187,15 +1200,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1219,7 +1232,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1234,15 +1247,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1266,7 +1279,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1281,15 +1294,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1313,7 +1326,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1328,15 +1341,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1360,7 +1373,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1375,15 +1388,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1407,7 +1420,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1422,15 +1435,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1454,7 +1467,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1469,15 +1482,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1501,7 +1514,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1516,15 +1529,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1548,7 +1561,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1563,15 +1576,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1595,7 +1608,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1610,15 +1623,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1642,7 +1655,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1657,15 +1670,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1689,7 +1702,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1704,15 +1717,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1736,7 +1749,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1751,15 +1764,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1783,7 +1796,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1798,15 +1811,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1830,7 +1843,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1845,15 +1858,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000
@@ -1877,7 +1890,7 @@ SectionEnd
 Section /o ""
 	MessageBox MB_OK "Don't close any window."
 	SetOutPath $INSTDIR
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
 	Pop $0
 	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
 	AddSize 8270
@@ -1892,15 +1905,15 @@ SectionEnd
 #Installs Startbatch
 Section /o ""
 	SetOutPath $INSTDIR\$VERSION
-	inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
 	Pop $0
 SectionEnd
 
 #Starts the server for the first time
 Section /o ""
-MessageBox MB_OK "The Server starts now for the first time. After it's done you can stop the server and close the Installer"
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
 SetOutPath $INSTDIR\$VERSION
-inetc::get "https://github.com/KastenKlicker/SpigotInstaller/raw/master/Build/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 	Pop $0
 Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
 AddSize 45000

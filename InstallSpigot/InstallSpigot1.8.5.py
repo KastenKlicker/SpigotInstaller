@@ -2,6 +2,7 @@
 
 # @author KastenKlicker
 
+import shutil
 import os
 import os.path
 from os import path
@@ -22,7 +23,7 @@ if path.exists(version):
 
      # Deletes the directory and jumps back to the Installer
     if decision == "YES":
-        os.system('cmd /k "rmdir /s "' + version + '" && exit"')
+        shutil.rmtree(version)
         exit()
 
     # Abort Installation

@@ -22,8 +22,9 @@ if path.exists(version):
 
     # Deletes the directory and starts downloading
     if decision == "YES":
+        shutil.rmtree(version)
         os.system(
-            'cmd /k "rmdir /s "' + version + '" && mkdir "' + version + '" && cd "' + version + '" && curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && java -Xmx1024M -jar BuildTools.jar --rev "' + version + '" && echo Finished! && @ping -n 5 localhost> nul && exit"')
+            'cmd /k "mkdir "' + version + '" && cd "' + version + '" && curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && java -Xmx1024M -jar BuildTools.jar --rev "' + version + '" && echo Finished! && @ping -n 2 localhost> nul && exit"')
         exit()
 
     # Abort Installation
@@ -33,5 +34,5 @@ if path.exists(version):
 # No, it doesn't exist, starts downloading
 else:
     os.system(
-        'cmd /k "mkdir "' + version + '" && cd "' + version + '" && curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && java -Xmx1024M -jar BuildTools.jar --rev "' + version + '" && echo Finished! && @ping -n 5 localhost> nul && exit"')
+        'cmd /k "mkdir "' + version + '" && cd "' + version + '" && curl -z BuildTools.jar -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && java -Xmx1024M -jar BuildTools.jar --rev "' + version + '" && echo Finished! && @ping -n 2 localhost> nul && exit"')
     exit()
