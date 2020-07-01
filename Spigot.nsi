@@ -51,7 +51,56 @@ SetOutPath $INSTDIR
 SectionEnd
 SectionGroupEnd
 
+
 #######################################################################################################################################################
+
+#Version 1.16.1
+SectionGroup "Version 1.16.1"
+Section /o ""
+	StrCpy $VERSION "1.16.1"
+SectionEnd
+#Installs and execute BuildTools
+Section /o ""
+	MessageBox MB_OK "Don't close any window."
+	SetOutPath $INSTDIR
+	inetc::get "https://kastenklicker.de/spigot/InstallSpigot/InstallSpigot$VERSION.exe" "$INSTDIR\InstallSpigot$VERSION.exe"
+	Pop $0
+	ExecWait "$INSTDIR\InstallSpigot$VERSION.exe"
+	AddSize 8270
+SectionEnd
+
+#Installs Startbatch
+Section /o ""
+	SetOutPath $INSTDIR\$VERSION
+	inetc::get "https://kastenklicker.de/spigot/startbat/StartSpigot-$VERSION.bat" "$INSTDIR\$VERSION\StartSpigot-$VERSION.bat"
+	Pop $0
+SectionEnd
+
+#Starts the server for the first time
+Section /o ""
+MessageBox MB_OK "The Server will start now for the first time. After it's done you can stop the server and close the Installer."
+SetOutPath $INSTDIR\$VERSION
+inetc::get "https://kastenklicker.de/spigot/FirstStart/FirstStart$VERSION.exe" "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+	Pop $0
+Exec "$INSTDIR\$VERSION\FirstStart$VERSION.exe"
+AddSize 45000
+SectionEnd
+
+#Delete Files having no use anymore
+Section /o ""
+	RMDir /r "$INSTDIR\$VERSION\apache-maven-3.6.0"
+	RMDir /r "$INSTDIR\$VERSION\BuildData"
+	RMDir /r "$INSTDIR\$VERSION\Bukkit"
+	RMDir /r "$INSTDIR\$VERSION\CraftBukkit"
+	RMDir /r "$INSTDIR\$VERSION\PortableGit-2.24.1.2-64-bit"
+	RMDir /r "$INSTDIR\$VERSION\Spigot"
+	RMDir /r "$INSTDIR\$VERSION\work"
+	Delete "$INSTDIR\$VERSION\BuildTools.jar"
+	Delete "$INSTDIR\InstallSpigot$VERSION.exe"
+SectionEnd
+SectionGroupEnd
+
+#################################################################################################################################################################
 
 #Version 1.15.2
 SectionGroup "Version 1.15.2"
@@ -1929,7 +1978,7 @@ SectionGroupEnd
 
 #Import license.txt with the absolute path
 Section ""
-  File "C:\Users\sveni\Documents\PCKram\SpigotInstallation\Build\license.txt"
+  File "The\path\you\downloaded\the\repository\license.txt"
 SectionEnd
 
 #Download Installation.pdf
