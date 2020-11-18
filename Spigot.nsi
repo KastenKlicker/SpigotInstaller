@@ -1,6 +1,7 @@
 # author KastenKlicker
 
 !include "MUI.nsh"
+!include "x64.nsh"
 
 Unicode true
 Name "Spigot"
@@ -29,7 +30,7 @@ Page custom Notes
 
 #FinishPage
 !define MUI_FINISHPAGE_TITLE "You have installed Spigot!"
-!define MUI_FINISHPAGE_TEXT "If you want to start the server go in the server directory, choose your Version and execute the StartSpigot-<Version>.bat"
+!define MUI_FINISHPAGE_TEXT "If you want to start the server go in the server directory, choose your Version and execute the start.bat"
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_TEXT "Open Installation Folder"
 !define MUI_FINISHPAGE_RUN_FUNCTION "OpenFolder"
@@ -47,6 +48,39 @@ Function Notes
 FunctionEnd
 
 #######################################################################################################################################################
+
+#Install AdoptOpenJDK JRE 8
+Section /o "Java 8" adoptopenjdk
+
+	#Check architecture
+	${If} ${RunningX64}
+	
+		#Download x64 msi Installer
+		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"
+		Pop $0
+
+		#Execute Installer
+		ExecWait '"msiexec" /i "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"'
+
+		#Delete Installer
+		Delete "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"
+
+	${Else}
+
+		#Download x86 msi Installer
+		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
+		Pop $0
+
+		#Execute Installer
+		ExecWait "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
+
+		#Delete Installer
+		Delete "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
+
+	${EndIf}
+SectionEnd
+
+#######################################################################################################################################################################
 
 #Custom Installation
 Section /o "Custom JAR File" custom_section
@@ -66,7 +100,7 @@ Function CustomFile
 	ReserveFile "CustomFile.ini"
     !insertmacro MUI_INSTALLOPTIONS_EXTRACT "CustomFile.ini"
 	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "CustomFile.ini"
-    !insertmacro MUI_HEADER_TEXT "CustomFile" "Choose a custom server jar and a name for your server."	
+    !insertmacro MUI_HEADER_TEXT "CustomFile" "Choose a custom server jar and a name for your server."
 FunctionEnd
 
 #Set variables for User Input
@@ -119,9 +153,17 @@ FunctionEnd
 
 #Installation with BuildTools.jar
 !macro BuildTools Version
-	SectionGroup "Version ${Version}"
+
+	#Check architecture
+	Section
+		${IfNot} ${RunningX64}
+			MessageBox MB_OK "Non 64 bit os is used. Use a 64 bit Windows system."
+			Abort
+		${EndIf}
+	SectionEnd
 
 	#Installation
+	SectionGroup "Version ${Version}"
 	Section /o ""
 		SetOutPath $INSTDIR
 		File "BuildFiles\checkPath.exe"
@@ -216,6 +258,12 @@ FunctionEnd
 !macroend
 
 #######################################################################################################################################################################
+
+#Section description
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+	!insertmacro MUI_DESCRIPTION_TEXT ${custom_section} "Choose a server jar to create a server, not supported by the Installer, like PaperMc."
+	!insertmacro MUI_DESCRIPTION_TEXT ${adoptopenjdk} "Install Java 8 with AdoptOpenJDK JRE version for more perfromance."
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 #Installation
 !insertmacro BuildTools "1.16.4"
