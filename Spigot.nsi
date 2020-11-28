@@ -51,13 +51,17 @@ FunctionEnd
 
 #Install AdoptOpenJDK JRE 8
 Section /o "Java 8" adoptopenjdk
+	SetOutPath $INSTDIR
 
 	#Check architecture
 	${If} ${RunningX64}
 	
 		#Download x64 msi Installer
-		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"
+		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi" /END
 		Pop $0
+		${IfNot} $0 == "OK"
+			MessageBox MB_OK "$0"
+		${EndIf}
 
 		#Execute Installer
 		ExecWait '"msiexec" /i "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"'
@@ -68,8 +72,11 @@ Section /o "Java 8" adoptopenjdk
 	${Else}
 
 		#Download x86 msi Installer
-		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
+		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi" /END
 		Pop $0
+		${IfNot} $0 == "OK"
+			MessageBox MB_OK "$0"
+		${EndIf}
 
 		#Execute Installer
 		ExecWait "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
@@ -101,6 +108,8 @@ Function CustomFile
     !insertmacro MUI_INSTALLOPTIONS_EXTRACT "CustomFile.ini"
 	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "CustomFile.ini"
     !insertmacro MUI_HEADER_TEXT "CustomFile" "Choose a custom server jar and a name for your server."
+
+	#!insertmacro MUI_DESCRIPTION_TEXT ${custom_section} "Choose a server jar to create a server, not supported by the Installer, like PaperMc."
 FunctionEnd
 
 #Set variables for User Input
@@ -154,16 +163,17 @@ FunctionEnd
 #Installation with BuildTools.jar
 !macro BuildTools Version
 
+	#Installation
+	SectionGroup "Version ${Version}"
+
 	#Check architecture
-	Section
+	Section /o ""
 		${IfNot} ${RunningX64}
 			MessageBox MB_OK "Non 64 bit os is used. Use a 64 bit Windows system."
 			Abort
 		${EndIf}
 	SectionEnd
 
-	#Installation
-	SectionGroup "Version ${Version}"
 	Section /o ""
 		SetOutPath $INSTDIR
 		File "BuildFiles\checkPath.exe"
