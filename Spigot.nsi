@@ -22,6 +22,7 @@ FunctionEnd
 
 #Other Pages
 !insertmacro MUI_PAGE_COMPONENTS
+Page custom ServerName ServerNameLeave
 Page custom CustomFile CustomFileLeave	#Only if section Custom JAR File is selected
 Page custom Notes
 !insertmacro MUI_PAGE_DIRECTORY
@@ -30,7 +31,7 @@ Page custom Notes
 
 #FinishPage
 !define MUI_FINISHPAGE_TITLE "You have installed Spigot!"
-!define MUI_FINISHPAGE_TEXT "If you want to start the server go in the server directory, choose your Version and execute the start.bat"
+!define MUI_FINISHPAGE_TEXT "If you want to start the server go in the server directory and execute the {nameofyourserver}.bat or, if selected, type your server name in the searchbar of windows."
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_TEXT "Open Installation Folder"
 !define MUI_FINISHPAGE_RUN_FUNCTION "OpenFolder"
@@ -41,10 +42,33 @@ Page custom Notes
 #Absolute path of License.txt
 LicenseData "The\path\you\downloaded\the\repository\BuildFiles\license.txt" #REMINDER: Change this to your own path.
 
+#Set variables for User Input
+var jar	#Only when CustomFile Section is selected
+var name
+
+#Custom sides
+
+#Show notes
 Function Notes
 	ReserveFile "CustomFile.ini"
     !insertmacro MUI_INSTALLOPTIONS_EXTRACT "Notes.ini"
 	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "Notes.ini"
+FunctionEnd
+
+#Get Servername
+Function ServerName
+	ReserveFile "ServerName.ini"
+	!insertmacro MUI_INSTALLOPTIONS_EXTRACT "ServerName.ini"
+	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "ServerName.ini"
+FunctionEnd
+
+Function ServerNameLeave
+	#Get User Input 
+	!insertmacro MUI_INSTALLOPTIONS_READ $name "ServerName.ini" "Field 2" "state"
+	${If} $name == ""
+		SetCtlColors $name "0x000000" "0xFF0000"
+		Abort
+	${EndIf}
 FunctionEnd
 
 #######################################################################################################################################################
@@ -90,8 +114,15 @@ SectionEnd
 #######################################################################################################################################################################
 
 #Custom Installation
-Section /o "Custom JAR File" custom_section
+SectionGroup "Custom JAR File"
+
+Section /o "" custom_section
 SectionEnd
+
+#Create startmenu shortcut
+#Section /o "Create startmenu shortcut" custom_shortcut
+#SectionEnd
+#SectionGroupEnd
 
 Function CustomFile
 	#Check if section is selected
@@ -107,14 +138,9 @@ Function CustomFile
 	ReserveFile "CustomFile.ini"
     !insertmacro MUI_INSTALLOPTIONS_EXTRACT "CustomFile.ini"
 	!insertmacro MUI_INSTALLOPTIONS_DISPLAY "CustomFile.ini"
-    !insertmacro MUI_HEADER_TEXT "CustomFile" "Choose a custom server jar and a name for your server."
+    !insertmacro MUI_HEADER_TEXT "CustomFile" "Choose a custom server jar."
 
-	#!insertmacro MUI_DESCRIPTION_TEXT ${custom_section} "Choose a server jar to create a server, not supported by the Installer, like PaperMc."
 FunctionEnd
-
-#Set variables for User Input
-var jar
-var name
 
 Function CustomFileLeave
 	#Check if section is selected
@@ -130,11 +156,9 @@ Function CustomFileLeave
 
 	#Get User Input
 	!insertmacro MUI_INSTALLOPTIONS_READ $jar "CustomFile.ini" "Field 2" "state"
-	!insertmacro MUI_INSTALLOPTIONS_READ $name "CustomFile.ini" "Field 4" "state"
 
 	#Check if fields where filled
     ${If} $jar == "" 
-	${OrIf} $name == ""
         SetCtlColors $jar "0x000000" "0xFF0000"
         Abort
 
@@ -151,12 +175,19 @@ Function CustomFileLeave
 		FileClose $9
 
 		#Write start.bat
-		FileOpen $9 "start.bat" w
+		FileOpen $9 "$name.bat" w
 		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar $name.jar nogui && pause"
 		FileClose $9
 
     ${EndIf}
-FunctionEnd	
+FunctionEnd
+
+#Create startmenu shortcut if selected
+Section /o "Create startmenu shortcut" custom_shortcut
+	CreateDirectory "$SMPROGRAMS\Spigot"
+	CreateShortCut "$SMPROGRAMS\Spigot\$name.lnk" $INSTDIR\$name.bat
+SectionEnd
+SectionGroupEnd
 
 #######################################################################################################################################################
 
@@ -210,10 +241,16 @@ FunctionEnd
 		FileClose $9
 
 		#Write start.bat
-		FileOpen $9 "start.bat" w
+		FileOpen $9 "$name.bat" w
 		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar spigot-${Version}.jar nogui && pause"
 		FileClose $9
 
+	SectionEnd
+
+	#Create startmenu shortcut
+	Section /o "Create startmenu shortcut"
+		CreateDirectory "$SMPROGRAMS\Spigot"
+		CreateShortCut "$SMPROGRAMS\Spigot\$name.lnk" $INSTDIR\$name.bat
 	SectionEnd
 
 	#Delete exe files
@@ -260,10 +297,17 @@ FunctionEnd
 		FileClose $9
 
 		#Write start.bat
-		FileOpen $9 "start.bat" w
+		FileOpen $9 "$name.bat" w
 		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar spigot-${Version}.jar nogui && pause"
 		FileClose $9
 	SectionEnd
+
+	#Create startmenu shortcut
+	Section /o "Create startmenu shortcut"
+		CreateDirectory "$SMPROGRAMS\Spigot"
+		CreateShortCut "$SMPROGRAMS\Spigot\$name.lnk" $INSTDIR\$name.bat
+	SectionEnd
+
 	SectionGroupEnd
 !macroend
 
