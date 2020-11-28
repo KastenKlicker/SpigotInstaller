@@ -13,4 +13,4 @@ Windows Defender will check the SpigotInstaller.exe, in this few seconds your sy
 
 Dependencies:
 Some Plugins from Standard Libary and:
-INetC https://nsis.sourceforge.io/Inetc_plug-in
+INetC https://github.com/DigitalMediaServer/NSIS-INetC-plugin
