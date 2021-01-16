@@ -320,7 +320,7 @@ SectionGroupEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 #Installation
-!insertmacro BuildTools "1.16.4"
+!insertmacro BuildTools "1.16.5"
 !insertmacro BuildTools "1.15.2"
 !insertmacro BuildTools "1.14.4"
 !insertmacro BuildTools "1.13.2"
