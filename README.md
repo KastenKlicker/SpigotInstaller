@@ -1,4 +1,5 @@
 # SpigotInstaller
+<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/kastenklicker/spigotinstaller/total?logo=GitHub&style=flat-square">
 Spigot Installer Repository 3.0
 
 This is the repo for a GUI Installer for Spigot.
