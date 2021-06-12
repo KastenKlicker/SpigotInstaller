@@ -15,7 +15,7 @@ Function OpenFolder
 FunctionEnd
 
 #WelcomePage
-!define MUI_WELCOMEFINISHPAGE_BITMAP "The\path\you\downloaded\the\repository\BuildFiles\Spigot.bmp" #REMINDER: Change this to your own path.
+!define MUI_WELCOMEFINISHPAGE_BITMAP "BuildFiles\Spigot.bmp"
 !define MUI_WELCOMEPAGE_TITLE "Install Spigot"
 !define MUI_WELCOMEPAGE_TEXT "This is a GUI Installer for Spigot, it will help you to install Spigot. This is not an offical program of spigotmc.org."
 !insertmacro MUI_PAGE_WELCOME
@@ -26,7 +26,7 @@ Page custom ServerName ServerNameLeave
 Page custom CustomFile CustomFileLeave	#Only if section Custom JAR File is selected
 Page custom Notes
 !insertmacro MUI_PAGE_DIRECTORY
-!insertmacro MUI_PAGE_LICENSE "The\path\you\downloaded\the\repository\BuildFiles\license.txt" #REMINDER: Change this to your own path.
+!insertmacro MUI_PAGE_LICENSE "BuildFiles\license.txt"
 !insertmacro MUI_PAGE_INSTFILES
 
 #FinishPage
@@ -40,7 +40,7 @@ Page custom Notes
 !insertmacro MUI_LANGUAGE "English"
 
 #Absolute path of License.txt
-LicenseData "The\path\you\downloaded\the\repository\BuildFiles\license.txt" #REMINDER: Change this to your own path.
+LicenseData "BuildFiles\license.txt"
 
 #Set variables for User Input
 var jar	#Only when CustomFile Section is selected
@@ -70,46 +70,6 @@ Function ServerNameLeave
 		Abort
 	${EndIf}
 FunctionEnd
-
-#######################################################################################################################################################
-
-#Install AdoptOpenJDK JRE 8
-Section /o "Java 8" adoptopenjdk
-	SetOutPath $INSTDIR
-
-	#Check architecture
-	${If} ${RunningX64}
-	
-		#Download x64 msi Installer
-		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi" /END
-		Pop $0
-		${IfNot} $0 == "OK"
-			MessageBox MB_OK "$0"
-		${EndIf}
-
-		#Execute Installer
-		ExecWait '"msiexec" /i "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"'
-
-		#Delete Installer
-		Delete "$INSTDIR\OpenJDK8U-jre_x64_windows_hotspot_8u275b01.msi"
-
-	${Else}
-
-		#Download x86 msi Installer
-		inetc::get "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u275-b01/OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi" "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi" /END
-		Pop $0
-		${IfNot} $0 == "OK"
-			MessageBox MB_OK "$0"
-		${EndIf}
-
-		#Execute Installer
-		ExecWait "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
-
-		#Delete Installer
-		Delete "$INSTDIR\OpenJDK8U-jre_x86-32_windows_hotspot_8u275b01.msi"
-
-	${EndIf}
-SectionEnd
 
 #######################################################################################################################################################################
 
@@ -176,7 +136,7 @@ Function CustomFileLeave
 
 		#Write start.bat
 		FileOpen $9 "$name.bat" w
-		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar $name.jar nogui && pause"
+		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -jar $name.jar nogui && pause"
 		FileClose $9
 
     ${EndIf}
@@ -242,7 +202,7 @@ SectionGroupEnd
 
 		#Write start.bat
 		FileOpen $9 "$name.bat" w
-		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar spigot-${Version}.jar nogui && pause"
+		FileWrite $9 "@echo off && java -Xms1G -Xmx1G -jar spigot-${Version}.jar nogui && pause"
 		FileClose $9
 
 	SectionEnd
@@ -316,10 +276,10 @@ SectionGroupEnd
 #Section description
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 	!insertmacro MUI_DESCRIPTION_TEXT ${custom_section} "Choose a server jar to create a server, not supported by the Installer, like PaperMc."
-	!insertmacro MUI_DESCRIPTION_TEXT ${adoptopenjdk} "Install Java 8 with AdoptOpenJDK JRE version for more perfromance."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 #Installation
+!insertmacro BuildTools "1.17"
 !insertmacro BuildTools "1.16.5"
 !insertmacro BuildTools "1.15.2"
 !insertmacro BuildTools "1.14.4"
