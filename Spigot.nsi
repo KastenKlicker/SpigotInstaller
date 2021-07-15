@@ -176,7 +176,7 @@ SectionGroupEnd
 
 		#Check returned value
 		${If} $0 == 1
-			MessageBox MB_OK "The path does contain any keywords.$\nPlease restart the installation."
+			MessageBox MB_OK "The path contains keywords.$\nPlease restart the installation."
 			Abort
 
 		${ElseIf} $0 == 0
@@ -279,7 +279,7 @@ SectionGroupEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 #Installation
-!insertmacro BuildTools "1.17"
+!insertmacro BuildTools "1.17.1"
 !insertmacro BuildTools "1.16.5"
 !insertmacro BuildTools "1.15.2"
 !insertmacro BuildTools "1.14.4"
