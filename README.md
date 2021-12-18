@@ -12,8 +12,6 @@ When you execute the InstallSpigot.exe a Windows SmartScreen window will show up
 To start the Installation click on "More info" and "Run anyway".
 Windows Defender will check the SpigotInstaller.exe, in this few seconds your system might freeze or run slow.
 
-If you want to support me look at my Buy me a coffee page: https://www.buymeacoffee.com/kastenklicker
-
 Dependencies:
 Some Plugins from Standard Libary and:
 INetC https://github.com/DigitalMediaServer/NSIS-INetC-plugin
